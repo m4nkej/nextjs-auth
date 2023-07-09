@@ -3,10 +3,11 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDatabase, findOneDocument } from "../../../lib/db-util";
 import { comparePasswords } from "../../../lib/auth-util";
 
-export default NextAuth({
+export const authOptions = {
   session: {
     jwt: true,
   },
+  secret: "LlKq6ZtYbr+hTC073mAmAh9/h2HwMfsFo4hrfCx5mLg=",
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
@@ -33,4 +34,6 @@ export default NextAuth({
       },
     }),
   ],
-});
+};
+
+export default NextAuth(authOptions);
